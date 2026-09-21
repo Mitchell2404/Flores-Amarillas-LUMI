@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yellow Flowers</title>
+    <title>Flores para Lucero</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,24 +21,51 @@
 
   <body>
     <div class="start-container">
-      <button class="btn btn-success" id="viewButton">Click here</button>
+      <button class="btn btn-success" id="viewButton">Abrir mi mensaje</button>
     </div>
 
     <div class="modal-container">
       <div id="result" class="modal-box">
         <p id="message">
-          Hello, before we start, I just want to remind you that you are very
-          special to me and thank you for everything.
+          Lucero, antes de comenzar quiero recordarte que eres una persona muy
+          especial para mí. Gracias por estar conmigo, por entenderme y amarme tal como soy. Eres mi gran amor, la chica que esta conmigo cuando a veces ni yo estoy conmigo.Espero que disfrutes de esta sorpresa que he preparado con mucho cariño para ti. 
+          LUMI "<3"
         </p>
-        <button id="closeButton" class="btn btn-success">Close</button>
+        <button id="closeButton" class="btn btn-success">Continuar y escuchar</button>
       </div>
     </div>
+    <aside class="music-player" id="musicPlayer" aria-label="Reproductor de AMO de Axel">
+      <div class="music-copy">
+        <span class="music-note" aria-hidden="true">♪</span>
+        <div>
+          <strong>AMO</strong>
+          <span>Axel · para Lucero</span>
+        </div>
+      </div>
+      <iframe
+        id="musicFrame"
+        title="AMO de Axel"
+        data-autoplay-src="https://www.youtube.com/embed/U3AugwfuuB0?autoplay=1&amp;rel=0"
+        src="about:blank"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <a
+        class="music-link"
+        href="https://www.youtube.com/watch?v=U3AugwfuuB0&list=RDU3AugwfuuB0&start_radio=1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Escuchar en YouTube
+      </a>
+    </aside>
+
     <div class="options-container">
-      <h2 id="title">Choose an option</h2>
+      <h2 id="title">Elige una sorpresa</h2>
       <div class="buttons-container">
-        <button class="btn btn-success" id="oneFlowerButton">1 Flower</button>
+        <button class="btn btn-success" id="oneFlowerButton">Una flor</button>
         <button class="btn btn-success" id="twelveFlowersButton">
-          12 Flowers
+          Un ramo de 12 flores
         </button>
       </div>
     </div>
@@ -51,7 +78,7 @@
         height="600"
       ></canvas>
       <div class="text-container">
-        <h2 id="text">For the most beautiful girl in the world.</h2>
+        <h2 id="text">Para Lucero, una gran chica, mi vv, mi amorsote. TI AMO</h2>
       </div>
     </main>
 

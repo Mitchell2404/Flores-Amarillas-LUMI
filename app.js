@@ -2,7 +2,7 @@ let title = document.title;
 
 window.addEventListener('blur', () => {
     title = document.title;
-    document.title = "Don't leave, come back :(";
+    document.title = "Lucer, vuelve a mirar tus flores :)";
 });
 
 window.addEventListener('focus', () => {
@@ -28,27 +28,30 @@ document.getElementById("twelveFlowersButton").addEventListener('click', functio
     titleElement.remove();
 });
 
+const musicPlayer = document.getElementById("musicPlayer");
+const musicFrame = document.getElementById("musicFrame");
+
+if (window.location.protocol === "file:") {
+    musicPlayer.classList.add("is-local");
+}
+
+document.getElementById("closeButton").addEventListener('click', function() {
+    if (window.location.protocol !== "file:") {
+        musicFrame.src = musicFrame.dataset.autoplaySrc;
+    }
+    musicPlayer.classList.add("is-visible");
+});
+
 const canvas = document.getElementById('flowerCanvas');
 const ctx = canvas.getContext('2d');
 
 function drawPetal(x, y, radiusX, scale, rotation, color, steps) {
-    const angleIncrement = (Math.PI / steps) * 2;
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(rotation);
     ctx.scale(1, scale);
     ctx.beginPath();
-    for (let i = 0; i <= steps; i++) {
-        const currentAngle = i * angleIncrement;
-        const currentRadius = Math.sin(currentAngle) * radiusX;
-        const pointY = Math.sin(currentAngle) * currentRadius;
-        const pointX = Math.cos(currentAngle) * currentRadius;
-        if (i === 0) {
-            ctx.moveTo(pointX, pointY);
-        } else {
-            ctx.lineTo(pointX, pointY);
-        }
-    }
+    ctx.ellipse(0, -radiusX * 1.15, radiusX, radiusX * 1.55, 0, 0, Math.PI * 2);
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
     ctx.fill();
@@ -67,7 +70,7 @@ function drawFlower(x, y, petalCount, petalRadiusX, petalRadiusY, stemHeight) {
             ctx.moveTo(x, y);
             ctx.lineTo(x, newY);
             ctx.lineWidth = 3;
-            ctx.strokeStyle = 'black';
+            ctx.strokeStyle = '#587a45';
             ctx.stroke();
             newY += stemHeightStep;
             setTimeout(drawStem, 100);
@@ -76,10 +79,8 @@ function drawFlower(x, y, petalCount, petalRadiusX, petalRadiusY, stemHeight) {
             let stepCount = 0;
             function drawStemPetals() {
                 if (stepCount <= steps) {
-                    const petalY = y + 250 - petalRadiusY;
-                    const petalY2 = y + 200 - petalRadiusY;
-                    drawPetal(400, petalY, 15, 2, 300, 'green', stepCount);
-                    drawPetal(370, petalY2, 15, 2, 300, 'green', stepCount);
+                    drawPetal(x - 28, y + stemHeight - 50, 15, 1.3, -0.7, '#789653', stepCount);
+                    drawPetal(x + 28, y + stemHeight - 82, 15, 1.3, 0.7, '#587a45', stepCount);
                     stepCount++;
                     setTimeout(drawStemPetals, 100);
                 }
@@ -95,13 +96,13 @@ function drawFlower(x, y, petalCount, petalRadiusX, petalRadiusY, stemHeight) {
     function drawNextPetal() {
         if (petalCountDrawn <= petalCount) {
             const angle = petalCountDrawn * angleIncrement;
-            drawPetal(x, y, petalRadiusX, 2, angle, 'yellow', 100);
+            drawPetal(x, y, petalRadiusX, 2, angle, '#ffd84d', 100);
             petalCountDrawn++;
             setTimeout(drawNextPetal, 1000);
         }
         ctx.beginPath();
         ctx.arc(x, y, 10, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = '#f28c28';
         ctx.fill();
     }
     drawNextPetal();
@@ -118,7 +119,7 @@ function drawFlowerWithoutStem(x, y, petalCount, petalRadiusX, petalRadiusY, ste
             ctx.moveTo(x, y);
             ctx.lineTo(x, newY);
             ctx.lineWidth = 3;
-            ctx.strokeStyle = 'black';
+            ctx.strokeStyle = '#587a45';
             ctx.stroke();
             newY += stemHeightStep;
             setTimeout(drawStem, 100);
@@ -132,13 +133,13 @@ function drawFlowerWithoutStem(x, y, petalCount, petalRadiusX, petalRadiusY, ste
     function drawNextPetal() {
         if (petalCountDrawn <= petalCount) {
             const angle = petalCountDrawn * angleIncrement;
-            drawPetal(x, y, petalRadiusX, 2, angle, 'yellow', 100);
+            drawPetal(x, y, petalRadiusX, 2, angle, '#ffd84d', 100);
             petalCountDrawn++;
             setTimeout(drawNextPetal, 1000);
         }
         ctx.beginPath();
         ctx.arc(x, y, 10, 0, Math.PI * 2);
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = '#f28c28';
         ctx.fill();
     }
     drawNextPetal();
@@ -150,7 +151,7 @@ function createMultipleFlowers() {
     const spaceY = canvas.height / 3;
     const flowerSize = 130;
 
-    for (let i = 0; i <= numFlowers; i++) {
+    for (let i = 0; i < numFlowers; i++) {
         const row = Math.floor(i / 4);
         const column = i % 4;
         const x = spaceX * column + spaceX / 2;

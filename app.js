@@ -30,16 +30,27 @@ document.getElementById("twelveFlowersButton").addEventListener('click', functio
 
 const musicPlayer = document.getElementById("musicPlayer");
 const musicFrame = document.getElementById("musicFrame");
+const musicLink = document.querySelector(".music-link");
+const musicUrl = "https://www.youtube.com/watch?v=U3AugwfuuB0&list=RDU3AugwfuuB0&start_radio=1&autoplay=1";
 
 if (window.location.protocol === "file:") {
     musicPlayer.classList.add("is-local");
+    musicLink.textContent = "Abrir AMO en YouTube";
+    musicLink.href = musicUrl;
 }
 
 document.getElementById("closeButton").addEventListener('click', function() {
-    if (window.location.protocol !== "file:") {
+    musicPlayer.classList.add("is-visible");
+
+    if (window.location.protocol === "file:") {
+        try {
+            window.open(musicUrl, "_blank");
+        } catch (error) {
+            musicLink.focus();
+        }
+    } else {
         musicFrame.src = musicFrame.dataset.autoplaySrc;
     }
-    musicPlayer.classList.add("is-visible");
 });
 
 const canvas = document.getElementById('flowerCanvas');

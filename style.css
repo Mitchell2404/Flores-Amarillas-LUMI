@@ -65,6 +65,17 @@ canvas {
     margin: 0;
 }
 
+.lucero-photo {
+    display: block;
+    width: min(100%, 230px);
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 18px;
+    border: 7px solid rgba(255, 251, 239, 0.96);
+    border-radius: 24px;
+    object-fit: cover;
+    box-shadow: 0 14px 28px rgba(91, 52, 11, 0.2), 0 0 0 2px var(--honey);
+}
+
 #twelveFlowersButton {
     margin-left: 0;
 }
@@ -371,6 +382,17 @@ h1 {
         margin-bottom: 18px;
         font-size: 1rem;
         line-height: 1.45;
+    }
+
+    .lucero-photo {
+        width: min(70vw, 220px);
+        margin-bottom: 14px;
+        border-width: 5px;
+        border-radius: 20px;
+    }
+
+    .text-container h2 {
+        font-size: clamp(1.35rem, 6.5vw, 2rem);
     }
 
     .music-player {
